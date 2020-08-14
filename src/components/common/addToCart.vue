@@ -64,7 +64,7 @@ export default {
         buynow(item){
             let obj = Object.assign({}, item, { 'num': this.num })
             let index = this.$store.state.cartItem.findIndex(function(obj){
-                console.log(obj);
+                // console.log(obj);
                 return obj.id == item.id;
             })
             if(index!=-1){

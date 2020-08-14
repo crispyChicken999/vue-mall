@@ -29,8 +29,8 @@
             <div class="handle">
                 <i :class="isSelectAll == false?'icon-gouxuan check-btn':'icon-gouxuan1 check-btn' " @click='changeAllChecked()'></i>
                 <span>合计：￥{{totel}}</span>
-                <div>                    
-                    <span class="oder">结算</span>
+                <div @click="paynow">                    
+                    <span class="oder" >结算</span>
                 </div>
             </div>
         </div>
@@ -38,14 +38,14 @@
 </template>
 
 <script>
-
+import { MessageBox,Toast} from 'mint-ui';
 export default {
     name:'cart',
     data(){
         return{
             isSelectAll:false,
             totel:0,
-            isCheckedArray:[],
+            
         }
     },
     computed:{
@@ -68,38 +68,105 @@ export default {
                 
                 // console.log(this.$store.state.cartItem);
                 // console.log(this.$store.state.cartItem);
+                this.calTotel();
         },
         minusNum(index){
             if(this.$store.state.cartItem[index].num>0){
                 this.$store.state.cartItem[index].num--;
             }
-            
+            this.calTotel();
         },
         delItem(index){
             this.$store.state.cartItem.splice(index,1);
+            this.calTotel();
         },
         changeChecked(index){
+            
+            let flag = 0;
             this.$store.state.cartItem[index].isChecked = !this.$store.state.cartItem[index].isChecked;
-            
-            
+            for(var i = 0;i<this.$store.state.cartItem.length;i++){
+                if(this.$store.state.cartItem[i].isChecked == false){
+                    flag = 0;
+                    break;
+                }
+                flag=1;
+            }
+            if(flag == 1){
+                this.isSelectAll = true;
+            }else{
+                this.isSelectAll = false;
+            }
+            this.calTotel();
         },
         changeAllChecked(){
-            
-        },
-        calTotel(){
-            for(var i=0;i<this.$store.state.cartItem.length;i++){
-                if (this.$store.state.cartItem[i].isChecked) {
-                    this.isCheckedArray.push(this.$store.state.cartItem[i]);
-                    // let temp = this.$store.state.cartItem[i];
-                    // this.totel += temp.num * temp.price;
+            this.isSelectAll = !this.isSelectAll;
+            if(this.isSelectAll == true){
+                for(var i=0;i<this.$store.state.cartItem.length;i++){
+                    this.$store.state.cartItem[i].isChecked = true;
+                }
+            }else{
+                for(var j=0;j<this.$store.state.cartItem.length;j++){
+                    this.$store.state.cartItem[j].isChecked = false;
                 }
             }
-            for(var j=0;i<this.isCheckedArray.length;i++){
-                let temp = this.isCheckedArray[j];
-                this.totel += temp.num * temp.price;
-                // console.log(this.isCheckedArray);
+            this.calTotel();
+
+        },
+        calTotel(){
+            let sum = 0;
+            for(var i=0;i<this.$store.state.cartItem.length;i++){
+                if(this.$store.state.cartItem[i].isChecked == true){
+                    sum += this.$store.state.cartItem[i].num * this.$store.state.cartItem[i].price;
+                }
             }
-            this.isCheckedArray = [];
+            this.totel = sum;
+            sum = 0;
+        },
+        paynow(){
+            let tempArray = [];
+            for(var i=0;i<this.$store.state.cartItem.length;i++){
+                if(this.$store.state.cartItem[i].isChecked == true){
+                    tempArray.push(this.$store.state.cartItem[i]);
+                }
+            }
+            if(tempArray.length!=0){
+                MessageBox.confirm('是否提交订单?')
+                .then(() => {
+                    Toast({
+                        message: '提交成功！',
+                        position: 'bottom',
+                        duration: 3000
+                    });
+                    for(var i=0;i<this.$store.state.cartItem.length;i++){
+                        if(this.$store.state.cartItem[i].isChecked == true){
+                            this.$store.state.cartItem.splice(i,1);
+                            i--;
+                        }
+                    }
+                    this.$store.state.paidList.push(tempArray);
+                    this.$router.push('/user');
+                    console.log('已支付订单');
+                    console.log(this.$store.state.paidList);
+                    console.log('购物车内容');
+                    console.log(this.$store.state.cartItem);
+                })
+                .catch(()=>{
+                    Toast({
+                        message: '您已取消提交！',
+                        position: 'bottom',
+                        duration: 3000
+                    });
+                    // console.log(err);
+                });
+            }else{
+                Toast({
+                        message: '您还未选择商品',
+                        position: 'bottom',
+                        duration: 3000
+                    });
+            }
+            
+            
         }
     }
 }
