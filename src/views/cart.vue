@@ -130,7 +130,7 @@ export default {
                 }
             }
             if(tempArray.length!=0){
-                MessageBox.confirm('是否提交订单?')
+                MessageBox.confirm('是否提交订单？ 共'+this.totel+'元')
                 .then(() => {
                     Toast({
                         message: '提交成功！',
@@ -143,7 +143,12 @@ export default {
                             i--;
                         }
                     }
-                    this.$store.state.paidList.push(tempArray);
+                    // let obj = Object.assign({}, tempArray, { 'totel': this.totel })
+                    let obj = tempArray;
+                    obj.totel = this.totel;
+                    console.log(obj);
+                    console.log(tempArray);
+                    this.$store.state.paidList.push(obj);
                     this.$router.push('/user');
                     console.log('已支付订单');
                     console.log(this.$store.state.paidList);
