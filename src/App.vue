@@ -2,22 +2,22 @@
   <div id="app">
     <div class="box-menu">
       <router-link to='/'>
-        <div class="button">
+        <div class="main-button">
           <img src="./assets/img/home.png" alt=""><span>首页</span>
         </div>
       </router-link>
       <router-link to='/category'>
-        <div class="button">
+        <div class="main-button">
           <img src="./assets/img/category.png" alt=""><span>分类</span>
         </div>
       </router-link>
-      <router-link to='/shopcar'>
-        <div class="button">
+      <router-link to='/cart'>
+        <div class="main-button">
           <img src="./assets/img/shopcar.png" alt=""><span>购物车</span>
         </div>
       </router-link>
       <router-link to='/user'>
-        <div class="button">
+        <div class="main-button">
           <img src="./assets/img/user.png" alt=""><span>我的</span>
         </div>
       </router-link>
@@ -58,29 +58,33 @@ time, mark, audio, video, input, button, textarea,select{
     padding: 0;
     font-size: 12px;
     font-weight: normal;
-    color: #666;
+    /* color: #666; */
     border: none;
     vertical-align: baseline;
+    /* overflow:auto; */
 }
+
 .box-menu{
   position: fixed;
-  z-index: 99;
-  bottom: 0px;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
   height: 60px;
   width: 100%;
   background-color: white;
+  box-shadow: 1px -2px 7px 0px #ccc;
 }
-.box-menu .button {
+.box-menu .main-button {
   float: left;
   width: 25%;
+  padding-top: 5px;
   text-align: center;
 }
-.box-menu .button img{
+.box-menu .main-button img{
   width: 32px;
   height: 32px;
-  
 }
-.box-menu .button span {
+.box-menu .main-button span {
   display: block;
 }
 #app{
