@@ -4,6 +4,14 @@
 - 使用**Vue-cli3**脚手架来进行项目搭建。
 
 # 项目截图
+![image](https://github.com/Nicholspp/vue-mall/blob/master/images/首页.png)
+![image](https://github.com/Nicholspp/vue-mall/blob/master/images/分类页.png)
+![image](https://github.com/Nicholspp/vue-mall/blob/master/images/购物车页面.png)
+![image](https://github.com/Nicholspp/vue-mall/blob/master/images/用户界面.png)
+![image](https://github.com/Nicholspp/vue-mall/blob/master/images/商品详情页.png)
+![image](https://github.com/Nicholspp/vue-mall/blob/master/images/加入购物车页面.png)
+
+
 
 ## 项目初始化（安装项目依赖）
 ```
