@@ -1,24 +1,21 @@
 # vue-mall
+- 这是一个简易的商场练习demo，非常适合刚入门vue的学习者进行练习。
+- 基本的逻辑是：选择商品，进行详情页，加入购物车，选择想要购买的商品，点击结算，用户信息页面会出现提交的订单。
+- 使用**Vue-cli3**脚手架来进行项目搭建。
 
-## Project setup
+# 项目截图
+
+## 项目初始化（安装项目依赖）
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 使用如下命令来启动项目（开发环境）
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 使用如下命令来启动项目（生产环境）
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
