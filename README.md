@@ -4,6 +4,11 @@
 - 使用**Vue-cli3**脚手架来进行项目搭建。
 - 运行项目后，F12打开开发者工具，切换到移动端显示。
 
+
+# 技术栈
+Vue+Vuex+Vue-router+mint-ui
+------------
+
 # 项目截图
 ![image](https://github.com/Nicholspp/vue-mall/blob/master/images/首页.png)
 ![image](https://github.com/Nicholspp/vue-mall/blob/master/images/分类页.png)
