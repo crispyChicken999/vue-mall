@@ -16,7 +16,7 @@
         </div>
         <div class="cart-button">
             <div class="totel">
-                合计: <span>￥{{item.price}}</span>
+                合计: <span>￥{{item.price * num}}</span>
             </div>
             <div class="buynow" @click="buynow(item)">
                 立即购买
@@ -42,6 +42,7 @@ export default {
     methods: {
         exitCartComponent() {
             this.$store.commit('exitCartComponent');
+            this.num = 1;
         },
         exitDetailPages() {
             this.$store.commit('exitDetailPages');
